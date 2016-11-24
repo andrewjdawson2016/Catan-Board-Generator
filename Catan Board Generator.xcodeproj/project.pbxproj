@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		343174C91DE68F8D00007081 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174C81DE68F8D00007081 /* AppDelegate.swift */; };
+		343174CB1DE68F8D00007081 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174CA1DE68F8D00007081 /* ViewController.swift */; };
+		343174CE1DE68F8D00007081 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 343174CC1DE68F8D00007081 /* Main.storyboard */; };
+		343174D01DE68F8D00007081 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 343174CF1DE68F8D00007081 /* Assets.xcassets */; };
+		343174D31DE68F8D00007081 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 343174D11DE68F8D00007081 /* LaunchScreen.storyboard */; };
+		343174DE1DE68F8D00007081 /* Catan_Board_GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174DD1DE68F8D00007081 /* Catan_Board_GeneratorTests.swift */; };
+		343174E91DE68F8D00007081 /* Catan_Board_GeneratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174E81DE68F8D00007081 /* Catan_Board_GeneratorUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		343174DA1DE68F8D00007081 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 343174BD1DE68F8D00007081 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 343174C41DE68F8D00007081;
+			remoteInfo = "Catan Board Generator";
+		};
+		343174E51DE68F8D00007081 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 343174BD1DE68F8D00007081 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 343174C41DE68F8D00007081;
+			remoteInfo = "Catan Board Generator";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		343174C51DE68F8D00007081 /* Catan Board Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Catan Board Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		343174C81DE68F8D00007081 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		343174CA1DE68F8D00007081 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		343174CD1DE68F8D00007081 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		343174CF1DE68F8D00007081 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		343174D21DE68F8D00007081 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		343174D41DE68F8D00007081 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		343174D91DE68F8D00007081 /* Catan Board GeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catan Board GeneratorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		343174DD1DE68F8D00007081 /* Catan_Board_GeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catan_Board_GeneratorTests.swift; sourceTree = "<group>"; };
+		343174DF1DE68F8D00007081 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		343174E41DE68F8D00007081 /* Catan Board GeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catan Board GeneratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		343174E81DE68F8D00007081 /* Catan_Board_GeneratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catan_Board_GeneratorUITests.swift; sourceTree = "<group>"; };
+		343174EA1DE68F8D00007081 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		343174C21DE68F8D00007081 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		343174D61DE68F8D00007081 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		343174E11DE68F8D00007081 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		343174BC1DE68F8D00007081 = {
+			isa = PBXGroup;
+			children = (
+				343174C71DE68F8D00007081 /* Catan Board Generator */,
+				343174DC1DE68F8D00007081 /* Catan Board GeneratorTests */,
+				343174E71DE68F8D00007081 /* Catan Board GeneratorUITests */,
+				343174C61DE68F8D00007081 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		343174C61DE68F8D00007081 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				343174C51DE68F8D00007081 /* Catan Board Generator.app */,
+				343174D91DE68F8D00007081 /* Catan Board GeneratorTests.xctest */,
+				343174E41DE68F8D00007081 /* Catan Board GeneratorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		343174C71DE68F8D00007081 /* Catan Board Generator */ = {
+			isa = PBXGroup;
+			children = (
+				343174C81DE68F8D00007081 /* AppDelegate.swift */,
+				343174CA1DE68F8D00007081 /* ViewController.swift */,
+				343174CC1DE68F8D00007081 /* Main.storyboard */,
+				343174CF1DE68F8D00007081 /* Assets.xcassets */,
+				343174D11DE68F8D00007081 /* LaunchScreen.storyboard */,
+				343174D41DE68F8D00007081 /* Info.plist */,
+			);
+			path = "Catan Board Generator";
+			sourceTree = "<group>";
+		};
+		343174DC1DE68F8D00007081 /* Catan Board GeneratorTests */ = {
+			isa = PBXGroup;
+			children = (
+				343174DD1DE68F8D00007081 /* Catan_Board_GeneratorTests.swift */,
+				343174DF1DE68F8D00007081 /* Info.plist */,
+			);
+			path = "Catan Board GeneratorTests";
+			sourceTree = "<group>";
+		};
+		343174E71DE68F8D00007081 /* Catan Board GeneratorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				343174E81DE68F8D00007081 /* Catan_Board_GeneratorUITests.swift */,
+				343174EA1DE68F8D00007081 /* Info.plist */,
+			);
+			path = "Catan Board GeneratorUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		343174C41DE68F8D00007081 /* Catan Board Generator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 343174ED1DE68F8D00007081 /* Build configuration list for PBXNativeTarget "Catan Board Generator" */;
+			buildPhases = (
+				343174C11DE68F8D00007081 /* Sources */,
+				343174C21DE68F8D00007081 /* Frameworks */,
+				343174C31DE68F8D00007081 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Catan Board Generator";
+			productName = "Catan Board Generator";
+			productReference = 343174C51DE68F8D00007081 /* Catan Board Generator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		343174D81DE68F8D00007081 /* Catan Board GeneratorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 343174F01DE68F8D00007081 /* Build configuration list for PBXNativeTarget "Catan Board GeneratorTests" */;
+			buildPhases = (
+				343174D51DE68F8D00007081 /* Sources */,
+				343174D61DE68F8D00007081 /* Frameworks */,
+				343174D71DE68F8D00007081 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				343174DB1DE68F8D00007081 /* PBXTargetDependency */,
+			);
+			name = "Catan Board GeneratorTests";
+			productName = "Catan Board GeneratorTests";
+			productReference = 343174D91DE68F8D00007081 /* Catan Board GeneratorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		343174E31DE68F8D00007081 /* Catan Board GeneratorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 343174F31DE68F8D00007081 /* Build configuration list for PBXNativeTarget "Catan Board GeneratorUITests" */;
+			buildPhases = (
+				343174E01DE68F8D00007081 /* Sources */,
+				343174E11DE68F8D00007081 /* Frameworks */,
+				343174E21DE68F8D00007081 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				343174E61DE68F8D00007081 /* PBXTargetDependency */,
+			);
+			name = "Catan Board GeneratorUITests";
+			productName = "Catan Board GeneratorUITests";
+			productReference = 343174E41DE68F8D00007081 /* Catan Board GeneratorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		343174BD1DE68F8D00007081 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Derek Dawson";
+				TargetAttributes = {
+					343174C41DE68F8D00007081 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = ZC626QC5J3;
+						ProvisioningStyle = Automatic;
+					};
+					343174D81DE68F8D00007081 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = ZC626QC5J3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 343174C41DE68F8D00007081;
+					};
+					343174E31DE68F8D00007081 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = ZC626QC5J3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 343174C41DE68F8D00007081;
+					};
+				};
+			};
+			buildConfigurationList = 343174C01DE68F8D00007081 /* Build configuration list for PBXProject "Catan Board Generator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 343174BC1DE68F8D00007081;
+			productRefGroup = 343174C61DE68F8D00007081 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				343174C41DE68F8D00007081 /* Catan Board Generator */,
+				343174D81DE68F8D00007081 /* Catan Board GeneratorTests */,
+				343174E31DE68F8D00007081 /* Catan Board GeneratorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		343174C31DE68F8D00007081 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				343174D31DE68F8D00007081 /* LaunchScreen.storyboard in Resources */,
+				343174D01DE68F8D00007081 /* Assets.xcassets in Resources */,
+				343174CE1DE68F8D00007081 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		343174D71DE68F8D00007081 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		343174E21DE68F8D00007081 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		343174C11DE68F8D00007081 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				343174CB1DE68F8D00007081 /* ViewController.swift in Sources */,
+				343174C91DE68F8D00007081 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		343174D51DE68F8D00007081 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				343174DE1DE68F8D00007081 /* Catan_Board_GeneratorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		343174E01DE68F8D00007081 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				343174E91DE68F8D00007081 /* Catan_Board_GeneratorUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		343174DB1DE68F8D00007081 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 343174C41DE68F8D00007081 /* Catan Board Generator */;
+			targetProxy = 343174DA1DE68F8D00007081 /* PBXContainerItemProxy */;
+		};
+		343174E61DE68F8D00007081 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 343174C41DE68F8D00007081 /* Catan Board Generator */;
+			targetProxy = 343174E51DE68F8D00007081 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		343174CC1DE68F8D00007081 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				343174CD1DE68F8D00007081 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		343174D11DE68F8D00007081 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				343174D21DE68F8D00007081 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		343174EB1DE68F8D00007081 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		343174EC1DE68F8D00007081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		343174EE1DE68F8D00007081 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZC626QC5J3;
+				INFOPLIST_FILE = "Catan Board Generator/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Catan-Board-Generator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		343174EF1DE68F8D00007081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZC626QC5J3;
+				INFOPLIST_FILE = "Catan Board Generator/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Catan-Board-Generator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		343174F11DE68F8D00007081 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = ZC626QC5J3;
+				INFOPLIST_FILE = "Catan Board GeneratorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Catan-Board-GeneratorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Catan Board Generator.app/Catan Board Generator";
+			};
+			name = Debug;
+		};
+		343174F21DE68F8D00007081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = ZC626QC5J3;
+				INFOPLIST_FILE = "Catan Board GeneratorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Catan-Board-GeneratorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Catan Board Generator.app/Catan Board Generator";
+			};
+			name = Release;
+		};
+		343174F41DE68F8D00007081 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = ZC626QC5J3;
+				INFOPLIST_FILE = "Catan Board GeneratorUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Catan-Board-GeneratorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Catan Board Generator";
+			};
+			name = Debug;
+		};
+		343174F51DE68F8D00007081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = ZC626QC5J3;
+				INFOPLIST_FILE = "Catan Board GeneratorUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Catan-Board-GeneratorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Catan Board Generator";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		343174C01DE68F8D00007081 /* Build configuration list for PBXProject "Catan Board Generator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				343174EB1DE68F8D00007081 /* Debug */,
+				343174EC1DE68F8D00007081 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		343174ED1DE68F8D00007081 /* Build configuration list for PBXNativeTarget "Catan Board Generator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				343174EE1DE68F8D00007081 /* Debug */,
+				343174EF1DE68F8D00007081 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		343174F01DE68F8D00007081 /* Build configuration list for PBXNativeTarget "Catan Board GeneratorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				343174F11DE68F8D00007081 /* Debug */,
+				343174F21DE68F8D00007081 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		343174F31DE68F8D00007081 /* Build configuration list for PBXNativeTarget "Catan Board GeneratorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				343174F41DE68F8D00007081 /* Debug */,
+				343174F51DE68F8D00007081 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 343174BD1DE68F8D00007081 /* Project object */;
+}
