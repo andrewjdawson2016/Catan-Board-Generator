@@ -1,35 +1,29 @@
-//
-//  Playground.swift
-//  Catan Board Generator
-//
-//  Created by Derek Dawson on 11/24/16.
-//  Copyright © 2016 Derek Dawson. All rights reserved.
-//
+
 
 import UIKit
 
-class Playground: UIViewController {
+class Playground: UIViewController, UIScrollViewDelegate {
+    
+    let imageView = UIImageView()
+    var scrollView: UIScrollView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
-        // Do any additional setup after loading the view.
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    func setStuff() {
+        var squareCords: Set<SquareCord> = Set<SquareCord>()
+        squareCords.insert(SquareCord(x: 5, y: 5))
+        squareCords.insert(SquareCord(x: 5, y: 5))
+        print(squareCords.count)
+        print(squareCords.contains(SquareCord(x: 5, y: 5)))
     }
-    */
+
+
 
 }

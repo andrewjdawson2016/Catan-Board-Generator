@@ -1,10 +1,4 @@
-//
-//  ShapesView.swift
-//  Catan Board Generator
-//
-//  Created by Derek Dawson on 11/24/16.
-//  Copyright © 2016 Derek Dawson. All rights reserved.
-//
+
 
 import UIKit
 
@@ -12,24 +6,40 @@ class ShapesView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let shape = CAShapeLayer()
+        view.layer.addSublayer(shape)
+        shape.opacity = 1
+        shape.lineWidth = 2
+        shape.lineJoin = kCALineJoinMiter
+        shape.strokeColor = UIColor.black.cgColor
+        shape.fillColor = UIColor(hexString: "A7CE25").cgColor
+        
+        let height: Double = Double(view.frame.width / 2)
+        let xOrigin: Double = 160
+        let yOrigin: Double = 200
+        
+        let path = UIBezierPath()
 
-        // Do any additional setup after loading the view.
-    }
+        
+        for i in 1...6 {
+            let x = xOrigin + height * cos((Double(i) * 2 - 1) * M_PI / 6)
+            let y = yOrigin + height * sin((Double(i) * 2 - 1) * M_PI / 6)
+            let point = CGPoint(x: x, y: y)
+            if i == 1 {
+                path.move(to: point)
+            } else {
+                path.addLine(to: point)
+            }
+        }
+        path.close()
+        shape.path = path.cgPath
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
     
+    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
