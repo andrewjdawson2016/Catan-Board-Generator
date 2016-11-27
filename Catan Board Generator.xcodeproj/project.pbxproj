@@ -14,7 +14,6 @@
 		343174D31DE68F8D00007081 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 343174D11DE68F8D00007081 /* LaunchScreen.storyboard */; };
 		343174DE1DE68F8D00007081 /* Catan_Board_GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174DD1DE68F8D00007081 /* Catan_Board_GeneratorTests.swift */; };
 		343174E91DE68F8D00007081 /* Catan_Board_GeneratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174E81DE68F8D00007081 /* Catan_Board_GeneratorUITests.swift */; };
-		343174F71DE6F28A00007081 /* ShapesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174F61DE6F28A00007081 /* ShapesView.swift */; };
 		343174F91DE7624500007081 /* SquareCord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174F81DE7624500007081 /* SquareCord.swift */; };
 		343174FB1DE7653100007081 /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174FA1DE7653100007081 /* Playground.swift */; };
 		343174FD1DE7F93000007081 /* UITile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174FC1DE7F93000007081 /* UITile.swift */; };
@@ -51,7 +50,6 @@
 		343174E41DE68F8D00007081 /* Catan Board GeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Catan Board GeneratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		343174E81DE68F8D00007081 /* Catan_Board_GeneratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catan_Board_GeneratorUITests.swift; sourceTree = "<group>"; };
 		343174EA1DE68F8D00007081 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		343174F61DE6F28A00007081 /* ShapesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapesView.swift; sourceTree = "<group>"; };
 		343174F81DE7624500007081 /* SquareCord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareCord.swift; sourceTree = "<group>"; };
 		343174FA1DE7653100007081 /* Playground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
 		343174FC1DE7F93000007081 /* UITile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITile.swift; sourceTree = "<group>"; };
@@ -105,16 +103,15 @@
 		343174C71DE68F8D00007081 /* Catan Board Generator */ = {
 			isa = PBXGroup;
 			children = (
-				343174C81DE68F8D00007081 /* AppDelegate.swift */,
 				343174CA1DE68F8D00007081 /* ViewController.swift */,
-				343174F81DE7624500007081 /* SquareCord.swift */,
-				343174F61DE6F28A00007081 /* ShapesView.swift */,
 				343174FC1DE7F93000007081 /* UITile.swift */,
-				343174FA1DE7653100007081 /* Playground.swift */,
+				343174F81DE7624500007081 /* SquareCord.swift */,
 				343174CC1DE68F8D00007081 /* Main.storyboard */,
 				343174CF1DE68F8D00007081 /* Assets.xcassets */,
 				343174D11DE68F8D00007081 /* LaunchScreen.storyboard */,
 				343174D41DE68F8D00007081 /* Info.plist */,
+				343174C81DE68F8D00007081 /* AppDelegate.swift */,
+				343174FA1DE7653100007081 /* Playground.swift */,
 			);
 			path = "Catan Board Generator";
 			sourceTree = "<group>";
@@ -279,7 +276,6 @@
 				343174CB1DE68F8D00007081 /* ViewController.swift in Sources */,
 				343174FD1DE7F93000007081 /* UITile.swift in Sources */,
 				343174C91DE68F8D00007081 /* AppDelegate.swift in Sources */,
-				343174F71DE6F28A00007081 /* ShapesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +528,7 @@
 				343174EF1DE68F8D00007081 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		343174F01DE68F8D00007081 /* Build configuration list for PBXNativeTarget "Catan Board GeneratorTests" */ = {
 			isa = XCConfigurationList;
@@ -540,6 +537,7 @@
 				343174F21DE68F8D00007081 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		343174F31DE68F8D00007081 /* Build configuration list for PBXNativeTarget "Catan Board GeneratorUITests" */ = {
 			isa = XCConfigurationList;
@@ -548,6 +546,7 @@
 				343174F51DE68F8D00007081 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

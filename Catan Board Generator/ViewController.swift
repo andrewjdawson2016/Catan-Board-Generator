@@ -11,14 +11,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var numRows = 5
     var colNums = [3, 4, 5, 4, 3]
     
-    var resources = ["sheep", "wood", "wheat", "ore", "brick"]
     let colors = ["9C3C0E", "474F39", "F8C727", "939393", "A7CE25"]
-    
     var backgroundColor: UIColor!
     
     var generateButton: UIButton!
-    
-    
     var scrollView: UIScrollView!
     var boardArea: UIView!
     
@@ -30,16 +26,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         backgroundColor  = UIColor(hexString: "B3EAE5")
         view.backgroundColor = backgroundColor
         
+        hexWidth = view.frame.width / 5
+        xPos = hexWidth
+        yPos = (view.frame.height - hexWidth * 4) / 2
+        
+        boardArea = UIView(frame: view.frame)
         scrollView = UIScrollView(frame: view.frame)
         scrollView.delegate = self
         view.addSubview(scrollView)
-        
-        hexWidth = view.frame.width / 5
-        xPos = hexWidth
-        yPos = 0
-        
-        
-        boardArea = UIView(frame: CGRect(x: 0, y: (view.frame.height - hexWidth * 4) / 2, width: view.frame.width, height: view.frame.height - (view.frame.height - hexWidth * 4) / 2 * 2))
         scrollView.addSubview(boardArea)
         scrollView.contentSize = CGSize(width: boardArea.frame.width, height: boardArea.frame.width / 8)
         scrollView.showsHorizontalScrollIndicator = false
@@ -47,36 +41,19 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         scrollView.alwaysBounceVertical = true
         scrollView.alwaysBounceHorizontal = true
         scrollView.clipsToBounds = false
-        
-        let scrollViewFrame = scrollView.frame
-        
-//        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
-//        let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height
-//        let minScale = min(scaleWidth, scaleHeight);
-//        scrollView.minimumZoomScale = minScale;
-//        
         scrollView.maximumZoomScale = 3.0
-//        scrollView.zoomScale = minScale;
-        
-        
-        
+ 
         createButton()
         createBoard()
-    
-
-        
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return boardArea
     }
     
-    
-    
     func createButton() {
-        let x = (self.view.frame.width - self.hexWidth * 5) / 2
         generateButton = UIButton(type: .system)
-        generateButton.frame = CGRect(x: x, y: view.frame.height - 72, width: view.frame.width - x * 2, height: 42)
+        generateButton.frame = CGRect(x: view.frame.width / 3, y: view.frame.height - 72, width: view.frame.width / 3, height: 42)
         generateButton.backgroundColor = UIColor(hexString: "A12500")
         generateButton.setTitle("Generate", for: .normal)
         generateButton.setTitleColor(UIColor(hexString: "FBDF1D"), for: .normal)
@@ -117,7 +94,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         let tile = UITile(frame: frame, color: color, number: number)
         tile.hex.strokeColor = backgroundColor.cgColor
         boardArea.addSubview(tile)
-        
     }
     
     

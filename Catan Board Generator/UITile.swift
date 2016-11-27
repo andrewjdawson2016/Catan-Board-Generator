@@ -7,7 +7,6 @@ class UITile: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
     
     init(frame: CGRect, color: UIColor, number: Int) {
@@ -30,12 +29,8 @@ class UITile: UIView {
         whiteCircle.frame = numTileFrame
         whiteCircle.backgroundColor = UIColor.white
         whiteCircle.layer.cornerRadius = numTileFrame.width / 2
-        // whiteCircle.layer.borderColor = UIColor.gray.cgColor
-        // whiteCircle.layer.borderWidth = 1
         addSubview(whiteCircle)
-        
-        
-        
+
         numLabel.frame = numTileFrame
         numLabel.text = "\(number)"
         if number == 6 || number == 8 {
@@ -48,11 +43,7 @@ class UITile: UIView {
         numLabel.sizeToFit()
         numLabel.center = CGPoint(x: whiteCircle.center.x, y: whiteCircle.center.y)
         addSubview(numLabel)
-        
 
-
-        
-        
         let halfHeight = Double(frame.height / 2)
         let halfWidth = Double(frame.width / 2)
         let path = UIBezierPath()
