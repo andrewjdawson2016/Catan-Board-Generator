@@ -17,6 +17,10 @@
 		343174F91DE7624500007081 /* SquareCord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174F81DE7624500007081 /* SquareCord.swift */; };
 		343174FB1DE7653100007081 /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174FA1DE7653100007081 /* Playground.swift */; };
 		343174FD1DE7F93000007081 /* UITile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174FC1DE7F93000007081 /* UITile.swift */; };
+		34C8DC771DEA76A300016569 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8DC761DEA76A300016569 /* Resource.swift */; };
+		34C8DC791DEA76E700016569 /* Port.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8DC781DEA76E700016569 /* Port.swift */; };
+		34C8DC7B1DEA773F00016569 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8DC7A1DEA773F00016569 /* Square.swift */; };
+		34C8DC7F1DEA7BF800016569 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8DC7E1DEA7BF800016569 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		343174F81DE7624500007081 /* SquareCord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareCord.swift; sourceTree = "<group>"; };
 		343174FA1DE7653100007081 /* Playground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
 		343174FC1DE7F93000007081 /* UITile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITile.swift; sourceTree = "<group>"; };
+		34C8DC761DEA76A300016569 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		34C8DC781DEA76E700016569 /* Port.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Port.swift; sourceTree = "<group>"; };
+		34C8DC7A1DEA773F00016569 /* Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		34C8DC7E1DEA7BF800016569 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +111,8 @@
 		343174C71DE68F8D00007081 /* Catan Board Generator */ = {
 			isa = PBXGroup;
 			children = (
-				343174CA1DE68F8D00007081 /* ViewController.swift */,
-				343174FC1DE7F93000007081 /* UITile.swift */,
-				343174F81DE7624500007081 /* SquareCord.swift */,
+				34C8DC7D1DEA7B2E00016569 /* Logic */,
+				34C8DC7C1DEA7B1300016569 /* UI */,
 				343174CC1DE68F8D00007081 /* Main.storyboard */,
 				343174CF1DE68F8D00007081 /* Assets.xcassets */,
 				343174D11DE68F8D00007081 /* LaunchScreen.storyboard */,
@@ -132,6 +139,27 @@
 				343174EA1DE68F8D00007081 /* Info.plist */,
 			);
 			path = "Catan Board GeneratorUITests";
+			sourceTree = "<group>";
+		};
+		34C8DC7C1DEA7B1300016569 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				343174FC1DE7F93000007081 /* UITile.swift */,
+				343174CA1DE68F8D00007081 /* ViewController.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		34C8DC7D1DEA7B2E00016569 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				34C8DC761DEA76A300016569 /* Resource.swift */,
+				34C8DC7A1DEA773F00016569 /* Square.swift */,
+				34C8DC781DEA76E700016569 /* Port.swift */,
+				343174F81DE7624500007081 /* SquareCord.swift */,
+				34C8DC7E1DEA7BF800016569 /* Utils.swift */,
+			);
+			name = Logic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,11 +299,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34C8DC7B1DEA773F00016569 /* Square.swift in Sources */,
 				343174F91DE7624500007081 /* SquareCord.swift in Sources */,
+				34C8DC7F1DEA7BF800016569 /* Utils.swift in Sources */,
 				343174FB1DE7653100007081 /* Playground.swift in Sources */,
 				343174CB1DE68F8D00007081 /* ViewController.swift in Sources */,
+				34C8DC771DEA76A300016569 /* Resource.swift in Sources */,
 				343174FD1DE7F93000007081 /* UITile.swift in Sources */,
 				343174C91DE68F8D00007081 /* AppDelegate.swift in Sources */,
+				34C8DC791DEA76E700016569 /* Port.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

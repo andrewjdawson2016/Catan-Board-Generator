@@ -1,5 +1,3 @@
-
-
 import UIKit
 
 class SquareCord: NSObject {
@@ -10,7 +8,6 @@ class SquareCord: NSObject {
     init(x: Int, y: Int) {
         self.x = x
         self.y = y
-
     }
     
     override func isEqual(_ object: Any?) -> Bool {
@@ -22,14 +19,11 @@ class SquareCord: NSObject {
     }
     
     override var hash: Int {
-        let prime: Int  = 31
+        let prime: Int = 31
         var result = 1
         result = prime * result + x
         result = prime * result + y
         return result
     }
-    
-    
-    
 
 }
