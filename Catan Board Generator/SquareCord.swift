@@ -1,7 +1,6 @@
 import UIKit
 
 class SquareCord: NSObject {
-    
     var x: Int
     var y: Int
     
@@ -25,5 +24,4 @@ class SquareCord: NSObject {
         result = prime * result + y
         return result
     }
-
 }

@@ -5,6 +5,8 @@ class UITile: UIView {
     
     let hex = CAShapeLayer()
     var points: [CGPoint] = []
+    var number: Int = 0
+    var squareCord: SquareCord!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -13,9 +15,8 @@ class UITile: UIView {
     init(frame: CGRect, color: UIColor, number: Int) {
         super.init(frame: frame)
         
+        self.number = number
                 
-        layer.borderWidth = 1
-
         
         let numLabel = UILabel()
         let whiteCircle = UIView()
@@ -28,13 +29,15 @@ class UITile: UIView {
         layer.addSublayer(hex)
         
         
-        let tileWidth = frame.width * 0.46
+        let tileWidth = frame.width * 0.5
         let numTileFrame = CGRect(x: (frame.width - tileWidth) / 2, y: (frame.height - tileWidth) / 2, width: tileWidth, height: tileWidth)
         
         if number != -1 {
             whiteCircle.frame = numTileFrame
             whiteCircle.backgroundColor = UIColor.white
             whiteCircle.layer.cornerRadius = numTileFrame.width / 2
+            whiteCircle.layer.borderColor = UIColor.black.cgColor
+            whiteCircle.layer.borderWidth = 2
             addSubview(whiteCircle)
             
             numLabel.frame = numTileFrame
@@ -45,15 +48,17 @@ class UITile: UIView {
                 numLabel.textColor = UIColor.black
             }
             numLabel.textAlignment = .center
-            numLabel.font = UIFont(name: "Arial-Bold", size: frame.width * 0.275)
+            numLabel.font = UIFont(name: "Arial Rounded MT Bold", size: frame.width * 0.275)
             numLabel.sizeToFit()
             numLabel.center = CGPoint(x: whiteCircle.center.x, y: whiteCircle.center.y)
             addSubview(numLabel)
         }
-
+        
+        
+        let path = UIBezierPath()
+        
         let halfHeight = Double(frame.height / 2)
         let halfWidth = Double(frame.width / 2)
-        let path = UIBezierPath()
         
         for i in 1...6 {
             let x = (halfWidth + (halfHeight * cos((Double(i) * 2 - 1) * M_PI / 6)))
