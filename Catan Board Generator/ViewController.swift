@@ -1,6 +1,8 @@
 
 
 import UIKit
+import AVFoundation
+
 
 class ViewController: UIViewController {
     
@@ -22,6 +24,8 @@ class ViewController: UIViewController {
     var hexWidth: CGFloat!
     var hexMap: [SquareCord: UITile] = [:]
     var coastCords: [SquareCord]!
+    var player: AVAudioPlayer?
+    var generateButton: UIButton!
     
     
     private var portMap: [Int: SquareCordSide]!
@@ -30,26 +34,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
         view.backgroundColor = UIColor(hexString: "909BA1")
-        
         hexWidth = view.frame.width / 6.25
-        
         let generateButton = createGenerateButton()
         let top = (view.frame.height - hexWidth * 4)
         boardArea = UIView(frame: CGRect(x: 0, y: top, width: view.frame.width, height: view.frame.height - top))
-        boardArea.center = CGPoint(x: view.center.x, y: (view.frame.height - 20 - generateButton.frame.height) / 2)
+        boardArea.center = CGPoint(x: view.center.x, y: generateButton.frame.origin.y / 2 + 20 / 2)
         view.addSubview(boardArea)
-        
         portMap = getPortMap()
-        
-        print(generateButton.frame.origin.y)
-        print(view.frame.height)
-
-        
         createNewBoard()
-        
     }
     
     private func getPortMap() -> [Int: SquareCordSide] {
@@ -88,22 +81,38 @@ class ViewController: UIViewController {
     }
     
     func createGenerateButton() -> UIButton {
-        let generateButton = UIButton(type: .system)
-        generateButton.frame.size = CGSize(width: 180, height: 50)
-        generateButton.center = CGPoint(x: view.center.x, y: view.frame.height - 60)
+        var m: CGFloat = 1.0
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            m = 1.5
+        }
+        generateButton = UIButton()
+        generateButton.frame.size = CGSize(width: 180 * m, height: 47.5 * m)
+        generateButton.center = CGPoint(x: view.center.x, y: view.frame.height - 60 * m)
         generateButton.backgroundColor = UIColor(hexString: "788284")
         generateButton.setTitle("Generate", for: .normal)
         generateButton.setTitleColor(UIColor(hexString: "434343"), for: .normal)
-        generateButton.titleLabel?.font = UIFont(name: "Arial Rounded MT Bold", size: 24)
-        generateButton.layer.cornerRadius = generateButton.frame.width / 7
+        generateButton.titleLabel?.font = UIFont(name: "Arial Rounded MT Bold", size: 22 * m)
+        generateButton.layer.cornerRadius = generateButton.frame.width / 7.25
         generateButton.addTarget(self, action: #selector(ViewController.generatedBoardTapped), for: .touchUpInside)
+        generateButton.addTarget(self, action: #selector(ViewController.generateButtonDown), for: .touchDown)
+        generateButton.addTarget(self, action: #selector(ViewController.generateButtonUp), for: .touchUpOutside)
         generateButton.alpha = 0.95
         generateButton.layer.borderColor = UIColor.black.cgColor
         view.addSubview(generateButton)
         return generateButton
     }
     
+    func generateButtonDown() {
+        generateButton.titleLabel?.alpha = 0.5
+    }
+    
+    func generateButtonUp() {
+        generateButton.titleLabel?.alpha = 1
+    }
+    
     func generatedBoardTapped() {
+        generateButtonUp()
+        playSound()
         clearOldBoard()
         createNewBoard()
     }
@@ -190,6 +199,22 @@ class ViewController: UIViewController {
         path.close()
         shapeLayer.path = path.cgPath
         
+    }
+    
+    func playSound() {
+        let url = Bundle.main.url(forResource: "shuffle", withExtension: "m4a")!
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            
+            player.prepareToPlay()
+            DispatchQueue.global(qos: .background).async {
+                player.play()
+            }
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
     private class SquareCordSide {

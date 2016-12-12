@@ -11,9 +11,7 @@ class UITile: UIView {
     
     init(frame: CGRect, color: UIColor, number: Int) {
         super.init(frame: frame)
-        
-        print(frame.width)
-        
+
         let numLabel = UILabel()
         let whiteCircle = UIView()
         
