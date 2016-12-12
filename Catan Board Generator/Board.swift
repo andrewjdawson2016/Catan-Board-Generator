@@ -1,8 +1,6 @@
 import UIKit
 
 class Board: NSObject {
-    static let NUM_REDS = 4
-    static let NUM_SQUARES = 19
     static let NUM_SIDES = 30
     static let NUM_PORTS = 9
     static let ROW_SIZES = [3, 4, 5, 4, 3]
@@ -14,37 +12,6 @@ class Board: NSObject {
     override init() {
         self.squares = Board.createSquares()
         self.ports = Board.createPorts()
-    }
-    
-    func getNeighbors(parent: SquareCord) -> [SquareCord] {
-        let childA = SquareCord(x: parent.x + 1, y: parent.y)
-        let childB = SquareCord(x: parent.x - 1, y: parent.y)
-        let childC = SquareCord(x: parent.x, y: parent.y - 1)
-        let childD = SquareCord(x: parent.x, y: parent.y + 1)
-        var childE: SquareCord! = nil
-        var childF: SquareCord! = nil
-        if parent.y == Board.NUM_ROWS - 1 || Board.ROW_SIZES[parent.y] > Board.ROW_SIZES[parent.y + 1] {
-            childE = SquareCord(x: parent.x - 1, y: parent.y + 1)
-        } else  {
-            childE = SquareCord(x: parent.x + 1, y: parent.y + 1)
-        }
-        if parent.y == 0 || Board.ROW_SIZES[parent.y] > Board.ROW_SIZES[parent.y - 1] {
-            childF = SquareCord(x: parent.x - 1, y: parent.y - 1)
-        } else {
-            childF = SquareCord(x: parent.x + 1, y: parent.y - 1)
-        }
-        if parent.y == 0 || parent.y == 1 {
-            return [childE, childD, childB, childF, childC, childA]
-        } else if parent.y == 2 {
-            return [childD, childE, childB, childF, childC, childA]
-        } else {
-            return [childD, childE, childB, childC, childF, childA]
-        }
-    }
-    
-    func squareCordIsInBounds(squareCord: SquareCord) -> Bool {
-        return squareCord.y >= 0 && squareCord.y <= Board.NUM_ROWS - 1 &&
-            squareCord.x >= 0 && squareCord.x <= Board.ROW_SIZES[squareCord.y] - 1
     }
     
     private class func createSquares() -> [Square] {
@@ -71,80 +38,127 @@ class Board: NSObject {
         let ITERATION_ORDER: [SquareCord] = [CENTER_SQUARE] + INNER_CIRCLE_SQUARES + OUTTER_CIRCLE_SQUARES
         let NUM_OUTTER_SQUARE_CIRCLE: Int = OUTTER_CIRCLE_SQUARES.count
         let NUM_INNER_SQUARE_CIRCLE: Int = INNER_CIRCLE_SQUARES.count
+        let CLUSTER_THRESHOLD: Int = 3
+        let RED_NUM_THRESHOLD: Int = 2
+        let SQUARE_TYPE_COUNTS: [SquareType:Int] = [SquareType.BRICK: 3,
+                                                    SquareType.DESERT: 1,
+                                                    SquareType.ORE: 3,
+                                                    SquareType.SHEEP: 4,
+                                                    SquareType.WHEAT: 4,
+                                                    SquareType.WOOD: 4]
         
-        func getSquareTypes() -> [SquareType] {
-            func getNext(allowed: inout [SquareType], disallowed: [SquareType]) -> SquareType {
-                func hasAllowed(allowed: [SquareType], disallowed: [SquareType]) -> Bool {
-                    for curr in allowed {
-                        if !disallowed.contains(curr) {
-                            return true
+        func getNeighbors(parent: Square, squares: [Square]) -> [Square] {
+            let neighborSquareCords: [SquareCord] = getSquareCordNeighbors(parent: parent.squareCord)
+            var result: [Square] = []
+            for neighbor in neighborSquareCords {
+                result.append(getSquareWithSquareCord(squareCord: neighbor, squares: squares)!)
+            }
+            return result
+        }
+        
+        func getSquareCordNeighbors(parent: SquareCord) -> [SquareCord] {
+            func squareCordIsInBounds(squareCord: SquareCord) -> Bool {
+                return squareCord.y >= 0 && squareCord.y <= Board.NUM_ROWS - 1 &&
+                    squareCord.x >= 0 && squareCord.x <= Board.ROW_SIZES[squareCord.y] - 1
+            }
+            
+            let childA = SquareCord(x: parent.x + 1, y: parent.y)
+            let childB = SquareCord(x: parent.x - 1, y: parent.y)
+            let childC = SquareCord(x: parent.x, y: parent.y - 1)
+            let childD = SquareCord(x: parent.x, y: parent.y + 1)
+            var childE: SquareCord! = nil
+            var childF: SquareCord! = nil
+            if parent.y == Board.NUM_ROWS - 1 || Board.ROW_SIZES[parent.y] > Board.ROW_SIZES[parent.y + 1] {
+                childE = SquareCord(x: parent.x - 1, y: parent.y + 1)
+            } else  {
+                childE = SquareCord(x: parent.x + 1, y: parent.y + 1)
+            }
+            if parent.y == 0 || Board.ROW_SIZES[parent.y] > Board.ROW_SIZES[parent.y - 1] {
+                childF = SquareCord(x: parent.x - 1, y: parent.y - 1)
+            } else {
+                childF = SquareCord(x: parent.x + 1, y: parent.y - 1)
+            }
+            var result: [SquareCord] = []
+            if squareCordIsInBounds(squareCord: childA) {
+                result.append(childA)
+            }
+            
+            if squareCordIsInBounds(squareCord: childB) {
+                result.append(childB)
+            }
+            
+            if squareCordIsInBounds(squareCord: childC) {
+                result.append(childC)
+            }
+            
+            if squareCordIsInBounds(squareCord: childD) {
+                result.append(childD)
+            }
+            
+            if squareCordIsInBounds(squareCord: childE) {
+                result.append(childE)
+            }
+            
+            if squareCordIsInBounds(squareCord: childF) {
+                result.append(childF)
+            }
+            return result
+        }
+        
+        func getSquares() -> [Square]{
+            func getSquaresHelper(map: inout [SquareCord:[SquareType:Int]], index: Int, list: inout [SquareType], result: inout [Square]) -> Bool {
+                if index == ITERATION_ORDER.count {
+                    return true
+                } else {
+                    let currSquareCord: SquareCord = ITERATION_ORDER[index]
+                    let neighbors: [SquareCord] = getSquareCordNeighbors(parent: currSquareCord)
+                    var arr: [Int] = Array(0...(list.count - 1))
+                    Utils.shuffle(&arr)
+                    for i in arr {
+                        let currSquareType: SquareType = list[i]
+                        if map[currSquareCord]![currSquareType]! == 0 {
+                            list.remove(at: i)
+                            for neighbor in neighbors {
+                                map[neighbor]![currSquareType]! = map[neighbor]![currSquareType]! + 1
+                            }
+                            result.append(Square(squareType: currSquareType, squareCord: currSquareCord))
+                            let worked: Bool = getSquaresHelper(map: &map, index: index + 1, list: &list, result: &result)
+                            if worked {
+                                return true
+                            } else {
+                                list.insert(currSquareType, at: i)
+                                for neighbor in neighbors {
+                                    map[neighbor]![currSquareType]! = map[neighbor]![currSquareType]! - 1
+                                }
+                                result.remove(at: result.count - 1)
+                            }
                         }
                     }
                     return false
                 }
-                
-                var index: Int = Utils.random(0, allowed.count - 1)
-                if !hasAllowed(allowed: allowed, disallowed: disallowed) {
-                    let result: SquareType = allowed[index]
-                    allowed.remove(at: index)
-                    return result
-                } else {
-                    while (disallowed.contains(allowed[index])) {
-                        index = Utils.random(0, allowed.count - 1)
-                    }
-                    let result: SquareType = allowed[index]
-                    allowed.remove(at: index)
-                    return result
-                }
             }
-            var allowed: [SquareType] = [SquareType.DESERT,
-                                         SquareType.BRICK,
-                                         SquareType.BRICK,
-                                         SquareType.BRICK,
-                                         SquareType.ORE,
-                                         SquareType.ORE,
-                                         SquareType.ORE,
-                                         SquareType.SHEEP,
-                                         SquareType.SHEEP,
-                                         SquareType.SHEEP,
-                                         SquareType.SHEEP,
-                                         SquareType.WHEAT,
-                                         SquareType.WHEAT,
-                                         SquareType.WHEAT,
-                                         SquareType.WHEAT,
-                                         SquareType.WOOD,
-                                         SquareType.WOOD,
-                                         SquareType.WOOD,
-                                         SquareType.WOOD];
-            Utils.shuffle(&allowed)
-            var disallowed: [SquareType] = []
-            var result: [SquareType] = []
             
-            let first: SquareType = getNext(allowed: &allowed, disallowed: disallowed)
-            disallowed.append(first)
-            result.append(first)
             
-            for _ in 1...(NUM_INNER_SQUARE_CIRCLE) {
-                let curr: SquareType = getNext(allowed: &allowed , disallowed: disallowed)
-                result.append(curr)
-                if disallowed.count == 1 {
-                    disallowed.append(curr)
-                } else {
-                    disallowed.remove(at: 1)
-                    disallowed.append(curr)
+            
+            var map: [SquareCord:[SquareType:Int]] = [:]
+            for squareCord in ITERATION_ORDER {
+                var squareTypeMap: [SquareType:Int] = [:]
+                for squareType in SQUARE_TYPE_COUNTS {
+                    squareTypeMap[squareType.key] = 0
+                }
+                map[squareCord] = squareTypeMap
+            }
+            
+            var list: [SquareType] = []
+            for squareTypeCount in SQUARE_TYPE_COUNTS {
+                for _ in 1...squareTypeCount.value {
+                    list.append(squareTypeCount.key)
                 }
             }
             
-            disallowed = []
-            for _ in 1...NUM_OUTTER_SQUARE_CIRCLE {
-                let curr: SquareType = getNext(allowed: &allowed, disallowed: disallowed)
-                result.append(curr)
-                if disallowed.count == 1 {
-                    disallowed.remove(at: 0)
-                }
-                disallowed.append(curr)
-            }
-            return result;
+            var result: [Square] = []
+            getSquaresHelper(map: &map, index: 0, list: &list, result: &result)
+            return result
         }
         
         func getSquareWithSquareCord(squareCord: SquareCord, squares: [Square]) -> Square? {
@@ -158,84 +172,84 @@ class Board: NSObject {
         
         func placeDiceNums(squares: inout [Square]) {
             var startIndex: Int = Utils.random(0, NUM_OUTTER_SQUARE_CIRCLE - 1)
+            var diceNumIndex: Int = 0
             for i in 0...(NUM_OUTTER_SQUARE_CIRCLE - 1) {
                 let square: Square = getSquareWithSquareCord(squareCord: OUTTER_CIRCLE_SQUARES[(startIndex + i) % NUM_OUTTER_SQUARE_CIRCLE], squares: squares)!
                 if square.squareType != SquareType.DESERT {
-                    square.number = DICE_NUMS[i]
+                    square.number = DICE_NUMS[diceNumIndex]
+                    diceNumIndex += 1
                 }
             }
+            
+            var shuffledRemainingDiceNumbers: [Int] = Array(DICE_NUMS[diceNumIndex...(DICE_NUMS.count - 1)])
+            Utils.shuffle(&shuffledRemainingDiceNumbers)
+            diceNumIndex = 0
             
             startIndex = Utils.random(0, NUM_INNER_SQUARE_CIRCLE - 1)
             for i in 0...(NUM_INNER_SQUARE_CIRCLE - 1) {
                 let square: Square = getSquareWithSquareCord(squareCord: INNER_CIRCLE_SQUARES[(startIndex + i) % NUM_INNER_SQUARE_CIRCLE], squares: squares)!
                 if square.squareType != SquareType.DESERT {
-                    square.number = DICE_NUMS[i + NUM_OUTTER_SQUARE_CIRCLE]
+                    square.number = shuffledRemainingDiceNumbers[diceNumIndex]
+                    diceNumIndex += 1
                 }
             }
             
             let centerSquare: Square = getSquareWithSquareCord(squareCord: CENTER_SQUARE, squares: squares)!
             if centerSquare.squareType != SquareType.DESERT {
-                centerSquare.number = DICE_NUMS[DICE_NUMS.count - 1]
+                centerSquare.number = shuffledRemainingDiceNumbers[diceNumIndex]
             }
         }
         
         func squaresAreFair(squares: [Square]) -> Bool {
-            return redNumsDistributed(squares: squares)
-        }
-        
-        func redNumsDistributed(squares: [Square]) -> Bool {
-            var map: [SquareType: Int] = [:]
-            for square in squares {
-                if square.isRedNum() {
-                    let type: SquareType = square.squareType!
-                    if map[type] == nil {
-                        map[type] = 0
-                    }
-                    map[type] = map[type]! + 1
-                    if map[type] == 3 {
-                        return false
+            func redNumsDistributed() -> Bool {
+                var map: [SquareType:Int] = [:]
+                for square in squares {
+                    if square.isRedNum() {
+                        if map[square.squareType] == nil {
+                            map[square.squareType] = 0
+                        }
+                        map[square.squareType] = map[square.squareType]! + 1
+                        if map[square.squareType]! > RED_NUM_THRESHOLD {
+                            return false
+                        }
                     }
                 }
+                return true
             }
-            return true
+            
+            func redNumsNotTouching() -> Bool {
+                for square in squares {
+                    if square.isRedNum() {
+                        let neighbors: [Square] = getNeighbors(parent: square, squares: squares)
+                        for neighbor in neighbors {
+                            if neighbor.isRedNum() {
+                                return false
+                            }
+                        }
+                    }
+                }
+                return true
+            }
+            
+            return redNumsDistributed() && redNumsNotTouching()
         }
         
-        func redNumsNotTouching(squares: [Square]) -> Bool {
-            for square in squares {
-                let neighbors: [SquareCord] = getNeighbors(squares)
+        func swapSquareTypes(squares: [Square]) {
+            if CLUSTER_THRESHOLD > 0 {
+                var index: Int = Utils.random(0, ITERATION_ORDER.count - 1)
+                for _ in 1...CLUSTER_THRESHOLD {
+                    let nextIndex: Int = Utils.random(0, ITERATION_ORDER.count - 1)
+                    Utils.swap(&squares[index].squareType, &squares[nextIndex].squareType)
+                    index = nextIndex
+                }
             }
         }
         
         while true {
-            var squareTypes: [SquareType] = getSquareTypes()
-            var result: [Square] = []
-            
-            for i in 0...(NUM_SQUARES - 1) {
-                result.append(Square(squareType: squareTypes[i], squareCord: ITERATION_ORDER[i]));
-            }
+            var result: [Square] = getSquares()
+            swapSquareTypes(squares: result)
             placeDiceNums(squares: &result)
-            
             if squaresAreFair(squares: result) {
-                Utils.swapRandom(&result)
-                if redNumsNotTouching(squares: result) {
-                    return result
-                }
-            }
-            
-            let innerLast = getSquareWithSquareCord(squares: result, squareCord: SquareCord(x: 1, y: 2))
-            let innerFirst = getSquareWithSquareCord(squares: result, squareCord: SquareCord(x: 1, y: 1))
-            let innerSame: Bool = innerFirst!.resource == innerLast!.resource
-            
-            let outterLast = getSquareWithSquareCord(squares: result, squareCord: SquareCord(x: 0, y: 1))
-            let outterFirst = getSquareWithSquareCord(squares: result, squareCord: SquareCord(x: 0, y: 0))
-            let outterSame: Bool = outterFirst!.resource == outterLast!.resource
-            
-            let outterSecondLast = getSquareWithSquareCord(squares: result, squareCord: SquareCord(x: 0, y: 2))
-            let outSecondLastSame: Bool = outterLast!.resource == outterSecondLast!.resource
-            
-            
-            let clusterCount: Int = getClusterCount(squares: result)
-            if redNumsDistributed(squares: result) && clusterCount < 4 && !innerSame && !outterSame && !outSecondLastSame {
                 return result
             }
         }

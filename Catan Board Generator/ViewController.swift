@@ -13,19 +13,19 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var hexMap: [SquareCord: UITile] = [:]
     var coastCords: [SquareCord]!
     
-    var tileColorMap: [Resource:String] = [Resource.BRICK: "94410B",
-                                     Resource.WOOD: "5A5C34",
-                                     Resource.WHEAT: "FBD769",
-                                     Resource.ORE: "878A8F",
-                                     Resource.SHEEP: "A5AF3D",
-                                     Resource.DESERT: "C4AF73"]
+    var tileColorMap: [SquareType : String] = [SquareType.BRICK: "94410B",
+                                               SquareType.WOOD: "5A5C34",
+                                               SquareType.WHEAT: "FBD769",
+                                               SquareType.ORE: "878A8F",
+                                               SquareType.SHEEP: "A5AF3D",
+                                               SquareType.DESERT: "C4AF73"]
     
-    var portColorMap: [PortTypes: String] = [PortTypes.BRICK: "94410B",
-                                             PortTypes.ORE: "878A8F",
-                                             PortTypes.SHEEP: "A5AF3D",
-                                             PortTypes.THREE_FOR_ONE: "FFFFFF",
-                                             PortTypes.WHEAT: "FBD769",
-                                             PortTypes.WOOD: "5A5C34"]
+    var portColorMap: [PortType : String] = [PortType.BRICK: "94410B",
+                                             PortType.ORE: "878A8F",
+                                             PortType.SHEEP: "A5AF3D",
+                                             PortType.THREE_FOR_ONE: "FFFFFF",
+                                             PortType.WHEAT: "FBD769",
+                                             PortType.WOOD: "5A5C34"]
     
     var backgroundColor: UIColor!
     var generateButton: UIButton!
@@ -39,6 +39,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         backgroundColor  = UIColor(hexString: "909BA1")
         view.backgroundColor = backgroundColor
@@ -144,7 +145,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 layer.removeFromSuperlayer()
             }
         }
-        var squares = Utils.getFairSquares()
+        let board: Board = Board()
+        let squares: [Square] = board.squares
         var squareIndex = 0
         
         for square in squares {
@@ -157,7 +159,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             let x = xOffSet + (self.hexWidth * CGFloat(col) + self.xPos - (self.hexWidth / 2) * CGFloat(numTilesInColumn - 3))
             let square = squares[squareIndex]
             squareIndex += 1
-            let color = UIColor(hexString: tileColorMap[square.resource]!)
+            let color = UIColor(hexString: tileColorMap[square.squareType]!)
             let frame = CGRect(x: x, y: y, width: hexWidth, height: hexWidth * (2 / sqrt(3)))
             let tile = UITile(frame: frame, color: color, number: square.number)
             tile.hex.strokeColor = UIColor.black.cgColor
@@ -167,12 +169,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             boardArea.addSubview(tile)
             hexMap[SquareCord(x: col, y: row)] = tile
         }
-        placePorts()
-
+        placePorts(board: board)
     }
     
-    func placePorts() {
-        let ports = Utils.getFairPorts()
+    func placePorts(board: Board) {
+        let ports = board.ports
         for port in ports {
             let index = port.index
             let squareCordSide = portMap[index]
@@ -239,7 +240,4 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         }
         
     }
-
 }
-
-
