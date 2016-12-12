@@ -4,9 +4,6 @@ import UIKit
 class UITile: UIView {
     
     let hex = CAShapeLayer()
-    var points: [CGPoint] = []
-    var number: Int = 0
-    var squareCord: SquareCord!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -15,8 +12,7 @@ class UITile: UIView {
     init(frame: CGRect, color: UIColor, number: Int) {
         super.init(frame: frame)
         
-        self.number = number
-                
+        print(frame.width)
         
         let numLabel = UILabel()
         let whiteCircle = UIView()
@@ -37,7 +33,7 @@ class UITile: UIView {
             whiteCircle.backgroundColor = UIColor.white
             whiteCircle.layer.cornerRadius = numTileFrame.width / 2
             whiteCircle.layer.borderColor = UIColor.black.cgColor
-            whiteCircle.layer.borderWidth = 2
+            whiteCircle.layer.borderWidth = UIScreen.main.bounds.width / 175
             addSubview(whiteCircle)
             
             numLabel.frame = numTileFrame
@@ -64,7 +60,6 @@ class UITile: UIView {
             let x = (halfWidth + (halfHeight * cos((Double(i) * 2 - 1) * M_PI / 6)))
             let y = (halfHeight + (halfHeight * sin((Double(i) * 2 - 1) * M_PI / 6)))
             let point = CGPoint(x: x, y: y)
-            points.append(point)
             if i == 1 {
                 path.move(to: point)
             } else {

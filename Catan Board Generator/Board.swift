@@ -105,7 +105,7 @@ class Board: NSObject {
             return result
         }
         
-        func getSquares() -> [Square]{
+        func getSquares() -> [Square] {
             func getSquaresHelper(map: inout [SquareCord:[SquareType:Int]], index: Int, list: inout [SquareType], result: inout [Square]) -> Bool {
                 if index == ITERATION_ORDER.count {
                     return true

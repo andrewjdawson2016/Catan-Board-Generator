@@ -2,36 +2,27 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIScrollViewDelegate {
+class ViewController: UIViewController {
     
+    var tileColorMap = [SquareType.BRICK: "94410B",
+                        SquareType.WOOD: "5A5C34",
+                        SquareType.WHEAT: "FBD769",
+                        SquareType.ORE: "878A8F",
+                        SquareType.SHEEP: "A5AF3D",
+                        SquareType.DESERT: "C4AF73"]
+    
+    var portColorMap = [PortType.BRICK: "94410B",
+                        PortType.ORE: "878A8F",
+                        PortType.SHEEP: "A5AF3D",
+                        PortType.THREE_FOR_ONE: "FFFFFF",
+                        PortType.WHEAT: "FBD769",
+                        PortType.WOOD: "5A5C34"]
+    
+    var boardArea: UIView!
     var hexWidth: CGFloat!
-    var xPos: CGFloat!
-    var yPos: CGFloat!
-    
-    var numRows = 5
-    var colNums = [3, 4, 5, 4, 3]
     var hexMap: [SquareCord: UITile] = [:]
     var coastCords: [SquareCord]!
     
-    var tileColorMap: [SquareType : String] = [SquareType.BRICK: "94410B",
-                                               SquareType.WOOD: "5A5C34",
-                                               SquareType.WHEAT: "FBD769",
-                                               SquareType.ORE: "878A8F",
-                                               SquareType.SHEEP: "A5AF3D",
-                                               SquareType.DESERT: "C4AF73"]
-    
-    var portColorMap: [PortType : String] = [PortType.BRICK: "94410B",
-                                             PortType.ORE: "878A8F",
-                                             PortType.SHEEP: "A5AF3D",
-                                             PortType.THREE_FOR_ONE: "FFFFFF",
-                                             PortType.WHEAT: "FBD769",
-                                             PortType.WOOD: "5A5C34"]
-    
-    var backgroundColor: UIColor!
-    var generateButton: UIButton!
-    var scrollView: UIScrollView!
-    var boardArea: UIView!
-    var contentFrame: CGRect!
     
     private var portMap: [Int: SquareCordSide]!
     
@@ -41,36 +32,23 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
 
-        backgroundColor  = UIColor(hexString: "909BA1")
-        view.backgroundColor = backgroundColor
+        view.backgroundColor = UIColor(hexString: "909BA1")
         
-        hexWidth = view.frame.width / 6
-        xPos = hexWidth
-        yPos = (view.frame.height - hexWidth * 4) / 2
+        hexWidth = view.frame.width / 6.25
         
-        boardArea = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        boardArea.center = view.center
-//        boardArea.layer.borderWidth = 1
-        scrollView = UIScrollView(frame: view.frame)
-        scrollView.delegate = self
-        view.addSubview(scrollView)
-        scrollView.addSubview(boardArea)
-        scrollView.contentSize = boardArea.frame.size
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.alwaysBounceVertical = false
-        scrollView.alwaysBounceHorizontal = false
-        scrollView.clipsToBounds = false
-        scrollView.maximumZoomScale = 1.0
+        let generateButton = createGenerateButton()
+        let top = (view.frame.height - hexWidth * 4)
+        boardArea = UIView(frame: CGRect(x: 0, y: top, width: view.frame.width, height: view.frame.height - top))
+        boardArea.center = CGPoint(x: view.center.x, y: (view.frame.height - 20 - generateButton.frame.height) / 2)
+        view.addSubview(boardArea)
         
         portMap = getPortMap()
-
-        createButton()
-        createBoard()
         
+        print(generateButton.frame.origin.y)
+        print(view.frame.height)
+
         
-
-
+        createNewBoard()
         
     }
     
@@ -109,17 +87,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         return portMap
     }
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return boardArea
-    }
-    
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-//        scrollView.contentInset = UIEdgeInsets.zero
-//        scrollView.e
-    }
-    
-    func createButton() {
-        generateButton = UIButton(type: .system)
+    func createGenerateButton() -> UIButton {
+        let generateButton = UIButton(type: .system)
         generateButton.frame.size = CGSize(width: 180, height: 50)
         generateButton.center = CGPoint(x: view.center.x, y: view.frame.height - 60)
         generateButton.backgroundColor = UIColor(hexString: "788284")
@@ -127,16 +96,26 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         generateButton.setTitleColor(UIColor(hexString: "434343"), for: .normal)
         generateButton.titleLabel?.font = UIFont(name: "Arial Rounded MT Bold", size: 24)
         generateButton.layer.cornerRadius = generateButton.frame.width / 7
-        generateButton.addTarget(self, action: #selector(ViewController.createBoard), for: .touchUpInside)
+        generateButton.addTarget(self, action: #selector(ViewController.generatedBoardTapped), for: .touchUpInside)
         generateButton.alpha = 0.95
         generateButton.layer.borderColor = UIColor.black.cgColor
         view.addSubview(generateButton)
+        return generateButton
+    }
+    
+    func generatedBoardTapped() {
+        clearOldBoard()
+        createNewBoard()
     }
 
     
+    func createNewBoard() {
+        let board = Board()
+        placeSquares(board: board)
+        placePorts(board: board)
+    }
     
-    
-    func createBoard() {
+    func clearOldBoard() {
         for subview in boardArea.subviews {
             subview.removeFromSuperview()
         }
@@ -145,31 +124,24 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 layer.removeFromSuperlayer()
             }
         }
-        let board: Board = Board()
-        let squares: [Square] = board.squares
-        var squareIndex = 0
-        
+    }
+    
+    func placeSquares(board: Board) {
+        let squares = board.squares
         for square in squares {
             let row = square.y!
-            let numTilesInColumn = self.colNums[row]
-            let yOffSet = generateButton.frame.height / 2
-            let y = self.yPos + (self.hexWidth * (2 / sqrt(3)) * 0.75) * CGFloat(row) - yOffSet
+            let y = (hexWidth * (2 / sqrt(3)) * 0.75) * CGFloat(row)
             let col = square.x!
-            let xOffSet = (self.view.frame.width - self.hexWidth * 5) / 2
-            let x = xOffSet + (self.hexWidth * CGFloat(col) + self.xPos - (self.hexWidth / 2) * CGFloat(numTilesInColumn - 3))
-            let square = squares[squareIndex]
-            squareIndex += 1
+            let xOffSet = (view.frame.width - hexWidth * 5) / 2
+            let x = xOffSet + (hexWidth * CGFloat(col) + hexWidth - (hexWidth / 2) * CGFloat(Board.ROW_SIZES[row] - 3))
             let color = UIColor(hexString: tileColorMap[square.squareType]!)
             let frame = CGRect(x: x, y: y, width: hexWidth, height: hexWidth * (2 / sqrt(3)))
             let tile = UITile(frame: frame, color: color, number: square.number)
             tile.hex.strokeColor = UIColor.black.cgColor
-            tile.squareCord = SquareCord(x: col, y: row)
-            let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapped))
-            tile.addGestureRecognizer(tap)
+            tile.hex.lineWidth = (view.frame.width / 175)
             boardArea.addSubview(tile)
             hexMap[SquareCord(x: col, y: row)] = tile
         }
-        placePorts(board: board)
     }
     
     func placePorts(board: Board) {
@@ -185,31 +157,31 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func tapped(_ sender: AnyObject) {
-        
-    }
-    
     func drawPort(tile: UITile, color: UIColor, side: Int) {
 
         let frame = tile.frame
         let halfHeight = Double(frame.height / 2)
         let halfWidth = Double(frame.width / 2)
-        let x1 = (Double(frame.origin.x) + (halfWidth + (halfHeight * cos((Double(side) * 2 - 1) * M_PI / 6))))
-        let y1 = (Double(frame.origin.y) + (halfHeight + (halfHeight * sin((Double(side) * 2 - 1) * M_PI / 6))))
-        let x2 = (Double(frame.origin.x) + (halfWidth + (halfHeight * cos((Double(side + 1) * 2 - 1) * M_PI / 6))))
-        let y2 = (Double(frame.origin.y) + (halfHeight + (halfHeight * sin((Double(side + 1) * 2 - 1) * M_PI / 6))))
+        var x1 = (Double(frame.origin.x) + (halfWidth + (halfHeight * cos((Double(side) * 2 - 1) * M_PI / 6))))
+        var y1 = (Double(frame.origin.y) + (halfHeight + (halfHeight * sin((Double(side) * 2 - 1) * M_PI / 6))))
+        var x2 = (Double(frame.origin.x) + (halfWidth + (halfHeight * cos((Double(side + 1) * 2 - 1) * M_PI / 6))))
+        var y2 = (Double(frame.origin.y) + (halfHeight + (halfHeight * sin((Double(side + 1) * 2 - 1) * M_PI / 6))))
         let dx = x2 - x1
         let dy = y2 - y1
         let x3 = (cos(((2.0 * M_PI) - M_PI / 3)) * dx - sin(((2.0 * M_PI) - M_PI / 3)) * dy) + x1
         let y3 = (sin(((2.0 * M_PI) - M_PI / 3)) * dx + cos(((2.0 * M_PI) - M_PI / 3)) * dy) + y1
-        let shapeLayer = CAShapeLayer()
         
+        x2 = x2 + (x3 - x2) / 5
+        y2 = y2 + (y3 - y2) / 5
+        x1 = x1 + (x3 - x1) / 5
+        y1 = y1 + (y3 - y1) / 5
+        
+        let shapeLayer = CAShapeLayer()
         shapeLayer.opacity = 1
-        shapeLayer.lineWidth = 2
+        shapeLayer.lineWidth = (view.frame.width / 175)
         shapeLayer.lineJoin = kCALineJoinMiter
         shapeLayer.fillColor = color.cgColor
         shapeLayer.strokeColor = UIColor.black.cgColor
-        shapeLayer.contentsScale = 2
         boardArea.layer.insertSublayer(shapeLayer, at: 0)
         let path = UIBezierPath()
         path.move(to: CGPoint(x: x1, y: y1))
@@ -220,19 +192,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    func makeViewAtPoint(point: CGPoint) {
-        let v = UIView()
-        v.frame.size = CGSize(width: 3, height: 3)
-        v.center = point
-        v.backgroundColor = UIColor.red
-        view.addSubview(v)
-    }
-    
     private class SquareCordSide {
         
         var squareCord: SquareCord!
         var side: Int!
-        
     
         init(squareCord: SquareCord, side: Int) {
             self.squareCord = squareCord
