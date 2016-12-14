@@ -38,7 +38,7 @@ class Board: NSObject {
         let ITERATION_ORDER: [SquareCord] = [CENTER_SQUARE] + INNER_CIRCLE_SQUARES + OUTTER_CIRCLE_SQUARES
         let NUM_OUTTER_SQUARE_CIRCLE: Int = OUTTER_CIRCLE_SQUARES.count
         let NUM_INNER_SQUARE_CIRCLE: Int = INNER_CIRCLE_SQUARES.count
-        let CLUSTER_THRESHOLD: Int = 3
+        let CLUSTER_THRESHOLD: Int = 2
         let RED_NUM_THRESHOLD: Int = 2
         let SQUARE_TYPE_COUNTS: [SquareType:Int] = [SquareType.BRICK: 3,
                                                     SquareType.DESERT: 1,

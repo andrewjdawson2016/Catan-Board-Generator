@@ -20,7 +20,7 @@
 		343174FB1DE7653100007081 /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174FA1DE7653100007081 /* Playground.swift */; };
 		343174FD1DE7F93000007081 /* UITile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343174FC1DE7F93000007081 /* UITile.swift */; };
 		3438D5021DEE8A0200FE6B32 /* Port.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3438D5011DEE8A0200FE6B32 /* Port.swift */; };
-		34C4B7DF1DFF626100C0E402 /* shuffle.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 34C4B7DE1DFF626100C0E402 /* shuffle.m4a */; };
+		34C63CAF1E00E572004A56CF /* shuffle.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 34C63CAE1E00E572004A56CF /* shuffle.m4a */; };
 		34C8DC771DEA76A300016569 /* SquareType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8DC761DEA76A300016569 /* SquareType.swift */; };
 		34C8DC791DEA76E700016569 /* PortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8DC781DEA76E700016569 /* PortType.swift */; };
 		34C8DC7B1DEA773F00016569 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C8DC7A1DEA773F00016569 /* Square.swift */; };
@@ -64,7 +64,7 @@
 		343174FA1DE7653100007081 /* Playground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
 		343174FC1DE7F93000007081 /* UITile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITile.swift; sourceTree = "<group>"; };
 		3438D5011DEE8A0200FE6B32 /* Port.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Port.swift; sourceTree = "<group>"; };
-		34C4B7DE1DFF626100C0E402 /* shuffle.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shuffle.m4a; sourceTree = "<group>"; };
+		34C63CAE1E00E572004A56CF /* shuffle.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shuffle.m4a; sourceTree = "<group>"; };
 		34C8DC761DEA76A300016569 /* SquareType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareType.swift; sourceTree = "<group>"; };
 		34C8DC781DEA76E700016569 /* PortType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortType.swift; sourceTree = "<group>"; };
 		34C8DC7A1DEA773F00016569 /* Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 				343174D41DE68F8D00007081 /* Info.plist */,
 				343174C81DE68F8D00007081 /* AppDelegate.swift */,
 				343174FA1DE7653100007081 /* Playground.swift */,
-				34C4B7DE1DFF626100C0E402 /* shuffle.m4a */,
+				34C63CAE1E00E572004A56CF /* shuffle.m4a */,
 			);
 			path = "Catan Board Generator";
 			sourceTree = "<group>";
@@ -284,7 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C4B7DF1DFF626100C0E402 /* shuffle.m4a in Resources */,
+				34C63CAF1E00E572004A56CF /* shuffle.m4a in Resources */,
 				343174D31DE68F8D00007081 /* LaunchScreen.storyboard in Resources */,
 				343174D01DE68F8D00007081 /* Assets.xcassets in Resources */,
 				343174CE1DE68F8D00007081 /* Main.storyboard in Resources */,
@@ -476,6 +476,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZC626QC5J3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Catan\\ Board\\ Generator",
+					"$(PROJECT_DIR)/Catan\\ Board\\ Generator",
+					"$(PROJECT_DIR)/Catan\\ Board\\ Generator",
+					"$(PROJECT_DIR)/Catan\\ Board\\ Generator",
+				);
 				INFOPLIST_FILE = "Catan Board Generator/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -491,6 +498,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZC626QC5J3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Catan\\ Board\\ Generator",
+					"$(PROJECT_DIR)/Catan\\ Board\\ Generator",
+					"$(PROJECT_DIR)/Catan\\ Board\\ Generator",
+					"$(PROJECT_DIR)/Catan\\ Board\\ Generator",
+				);
 				INFOPLIST_FILE = "Catan Board Generator/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

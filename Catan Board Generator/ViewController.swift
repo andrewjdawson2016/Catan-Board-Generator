@@ -20,29 +20,26 @@ class ViewController: UIViewController {
                         PortType.WHEAT: "FBD769",
                         PortType.WOOD: "5A5C34"]
     
-    var boardArea: UIView!
-    var hexWidth: CGFloat!
+    private var portMap: [Int: SquareCordSide]!
     var hexMap: [SquareCord: UITile] = [:]
     var coastCords: [SquareCord]!
-    var player: AVAudioPlayer?
+    
+    var boardArea: UIView!
     var generateButton: UIButton!
-    
-    
-    private var portMap: [Int: SquareCordSide]!
-    
+    var hexWidth: CGFloat!
+    var player: AVAudioPlayer?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(hexString: "909BA1")
         hexWidth = view.frame.width / 6.25
         let generateButton = createGenerateButton()
         let top = (view.frame.height - hexWidth * 4)
         boardArea = UIView(frame: CGRect(x: 0, y: top, width: view.frame.width, height: view.frame.height - top))
-        boardArea.center = CGPoint(x: view.center.x, y: generateButton.frame.origin.y / 2 + 20 / 2)
-        view.addSubview(boardArea)
+        boardArea.center = CGPoint(x: view.center.x, y: generateButton.frame.origin.y / 2 + 20)
         portMap = getPortMap()
         createNewBoard()
+        view.addSubview(boardArea)
     }
     
     private func getPortMap() -> [Int: SquareCordSide] {
@@ -86,12 +83,12 @@ class ViewController: UIViewController {
             m = 1.5
         }
         generateButton = UIButton()
-        generateButton.frame.size = CGSize(width: 180 * m, height: 47.5 * m)
-        generateButton.center = CGPoint(x: view.center.x, y: view.frame.height - 60 * m)
+        generateButton.frame.size = CGSize(width: 180 * m, height: 50 * m)
+        generateButton.center = CGPoint(x: view.center.x, y: view.frame.height - 70 * m)
         generateButton.backgroundColor = UIColor(hexString: "788284")
         generateButton.setTitle("Generate", for: .normal)
         generateButton.setTitleColor(UIColor(hexString: "434343"), for: .normal)
-        generateButton.titleLabel?.font = UIFont(name: "Arial Rounded MT Bold", size: 22 * m)
+        generateButton.titleLabel?.font = UIFont(name: "Arial Rounded MT Bold", size: 23 * m)
         generateButton.layer.cornerRadius = generateButton.frame.width / 7.25
         generateButton.addTarget(self, action: #selector(ViewController.generatedBoardTapped), for: .touchUpInside)
         generateButton.addTarget(self, action: #selector(ViewController.generateButtonDown), for: .touchDown)
@@ -139,13 +136,14 @@ class ViewController: UIViewController {
         let squares = board.squares
         for square in squares {
             let row = square.y!
-            let y = (hexWidth * (2 / sqrt(3)) * 0.75) * CGFloat(row)
             let col = square.x!
             let xOffSet = (view.frame.width - hexWidth * 5) / 2
             let x = xOffSet + (hexWidth * CGFloat(col) + hexWidth - (hexWidth / 2) * CGFloat(Board.ROW_SIZES[row] - 3))
+            let y = (hexWidth * (2 / sqrt(3)) * 0.75) * CGFloat(row)
             let color = UIColor(hexString: tileColorMap[square.squareType]!)
             let frame = CGRect(x: x, y: y, width: hexWidth, height: hexWidth * (2 / sqrt(3)))
             let tile = UITile(frame: frame, color: color, number: square.number)
+            
             tile.hex.strokeColor = UIColor.black.cgColor
             tile.hex.lineWidth = (view.frame.width / 175)
             boardArea.addSubview(tile)
@@ -156,8 +154,7 @@ class ViewController: UIViewController {
     func placePorts(board: Board) {
         let ports = board.ports
         for port in ports {
-            let index = port.index
-            let squareCordSide = portMap[index]
+            let squareCordSide = portMap[port.index]
             let squareCord = squareCordSide!.squareCord!
             let side = squareCordSide!.side!
             let tile = hexMap[squareCord]!
@@ -192,6 +189,7 @@ class ViewController: UIViewController {
         shapeLayer.fillColor = color.cgColor
         shapeLayer.strokeColor = UIColor.black.cgColor
         boardArea.layer.insertSublayer(shapeLayer, at: 0)
+        
         let path = UIBezierPath()
         path.move(to: CGPoint(x: x1, y: y1))
         path.addLine(to: CGPoint(x: x2, y: y2))
@@ -203,7 +201,6 @@ class ViewController: UIViewController {
     
     func playSound() {
         let url = Bundle.main.url(forResource: "shuffle", withExtension: "m4a")!
-        
         do {
             player = try AVAudioPlayer(contentsOf: url)
             guard let player = player else { return }
@@ -218,7 +215,6 @@ class ViewController: UIViewController {
     }
     
     private class SquareCordSide {
-        
         var squareCord: SquareCord!
         var side: Int!
     
@@ -228,4 +224,21 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    override open var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
+    override open var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .portrait
+    }
+    
+    override open var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
 }
